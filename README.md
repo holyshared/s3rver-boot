@@ -1,6 +1,8 @@
 # s3rver-boot
 
+[![npm version](https://badge.fury.io/js/s3rver-boot.svg)](https://badge.fury.io/js/s3rver-boot)
 [![Build Status](https://travis-ci.org/holyshared/s3rver-boot.svg?branch=master)](https://travis-ci.org/holyshared/s3rver-boot)
+[![Dependency Status](https://david-dm.org/holyshared/s3rver-boot.svg)](https://david-dm.org/holyshared/s3rver-boot)
 
 ## Basic usage
 
