@@ -1,7 +1,7 @@
 {
   "name": "s3rver-boot",
   "version": "0.1.0",
-  "description": "",
+  "description": "s3rver for test",
   "main": "lib/index.js",
   "files": [
     "lib/*.js",
