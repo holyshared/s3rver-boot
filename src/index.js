@@ -11,21 +11,17 @@ export default class Bootstrap {
     this.stoped = true;
   }
   start() {
-    return Promise.bind(this).then(function () {
-      return this.startServer();
-    }).then(function () {
+    return this.startServer().then(() => {
       return this.cleanupBucket();
-    }).then(function () {
+    }).then(() => {
       return this.createBuckets();
-    }).then(function () {
+    }).then(() => {
       this.stoped = false;
     });
   }
   startServer() {
-    var self = this;
-
-    return new Promise(function (resolve, reject) {
-      self.server = self.client.run(function (err, host, port) {
+    return new Promise((resolve, reject) => {
+      this.server = this.client.run((err, host, port) => {
         if (err) {
           return reject(err);
         }
@@ -38,10 +34,10 @@ export default class Bootstrap {
   }
 
   cleanupBucket() {
-    var directory = path.resolve(this.client.options.directory);
+    const directory = path.resolve(this.client.options.directory);
 
-    return new Promise(function (resolve, reject) {
-      fs.remove(directory, function (err) {
+    return new Promise((resolve, reject) => {
+      fs.remove(directory, (err) => {
         if (err) {
           return reject(err);
         }
@@ -51,13 +47,13 @@ export default class Bootstrap {
   }
 
   createBuckets() {
-    var storageDir = this.client.options.directory;
+    const storageDir = this.client.options.directory;
 
-    var buckets = this.buckets.map(function (bucket) {
+    const buckets = this.buckets.map((bucket) => {
       return path.join(storageDir, bucket);
-    }).map(function (bucketDirectory) {
-      return new Promise(function (resolve, reject) {
-        fs.mkdirs(bucketDirectory, function (err) {
+    }).map((bucketDirectory) => {
+      return new Promise((resolve, reject) => {
+        fs.mkdirs(bucketDirectory, (err) => {
           if (err) {
             return reject(err);
           }
@@ -69,11 +65,9 @@ export default class Bootstrap {
   }
 
   stop() {
-    var self = this;
-
-    return new Promise(function (resolve) {
-      self.server.close(resolve);
-      self.stoped = true;
+    return new Promise((resolve) => {
+      this.server.close(resolve);
+      this.stoped = true;
     });
   }
   get isStoped() {
